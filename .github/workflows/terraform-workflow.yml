@@ -52,4 +52,4 @@ jobs:
     # Apply terraform plan
     - name: Terraform apply
       working-directory: ./terraform-github
-      run: terraform apply --auto-approve
+      run: terraform destroy --auto-approve
