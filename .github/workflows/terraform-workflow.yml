@@ -20,6 +20,9 @@ jobs:
   terraform:
     name: 'EC2 creation'
     runs-on: amazon-linux
+    env:  
+       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
+       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
     #environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -47,9 +50,5 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform plan
-      
-      env:  
-       TF_VAR_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
-       TF_VAR_secret_key: ${{secrets.AWS_SECRET_KEY_ID}}
       working-directory: ./terraform-github
-      run: terraform plan -var=TF_VAR_access_key=${{secrets.AWS_ACCESS_KEY_ID}} -var=TF_VAR_secret_key=${{secrets.AWS_SECRET_KEY_ID}}
+      run: terraform plan -var=TF_VAR_access_key=${{ secrets.ACCESS_KEY }} -var=TF_VAR_secret_key=${{ secrets.SECRET_KEY }}
