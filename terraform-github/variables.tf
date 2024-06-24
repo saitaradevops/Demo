@@ -1,23 +1,23 @@
 variable "instance_type"{
-    type = "string"
+    type = string
 }
 
 variable "region" {
-    type = "string"
+    type = string
 }
 
 variable  "subnet_id" {
-    type = "string"
+    type = string
 }
 
 variable  "vpc_id" {
-    type = "string"
+    type = string
 }
 
 variable "input_port" {
-    type = "number
+    type = number
 }
 
 variable "tag" {
-    type = "string"
+    type = string
 }
