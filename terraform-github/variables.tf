@@ -24,10 +24,10 @@ variable "tag" {
 
 variable "access_key" {
     type = string
-    senstive = true
+    sensitive = true
 }
 
 variable "secret_key" {
     type = string
-    senstive = true
+    sensitive = true
 }
