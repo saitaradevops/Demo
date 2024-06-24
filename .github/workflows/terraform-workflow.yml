@@ -1,0 +1,45 @@
+name: 'EC2 Instance Creation'
+
+on:
+# push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+
+#permissions:
+  #contents: read
+
+workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'EC2 creation'
+    runs-on: amazon-linux
+    #environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+   
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+      
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform plan
+      env:  
+       TF_VAR_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
+       TF_VAR_secret_key: ${{secrets.AWS_SECRET_KEY_ID}}
+      run: terraform plan -var=TF_VAR_access_key -var=TF_VAR_secret_key
