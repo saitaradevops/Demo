@@ -47,8 +47,9 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform plan
-      working-directory: ./terraform-github
+      
       env:  
        TF_VAR_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
        TF_VAR_secret_key: ${{secrets.AWS_SECRET_KEY_ID}}
+      working-directory: ./terraform-github
       run: terraform plan -var=TF_VAR_access_key=${{secrets.AWS_ACCESS_KEY_ID}} -var=TF_VAR_secret_key=${{secrets.AWS_SECRET_KEY_ID}}
