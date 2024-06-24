@@ -3,13 +3,9 @@ name: 'EC2 Instance Creation'
 on:
   push:
     branches: [ "main" ]
-    paths:
-    - terraform-github/**
     
   pull_request:
     branches: [ "main" ]
-    paths:
-    - terraform-github/**
 
 #permissions:
   #contents: read
