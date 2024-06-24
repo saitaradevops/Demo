@@ -48,7 +48,7 @@ jobs:
       run: terraform init
       
 
-    # Checks that all Terraform configuration files adhere to a canonical format
+    # Checks that all Terraform configuration files adhere to a canonical format.
     - name: Terraform plan
       working-directory: ./terraform-github
       run: terraform plan
