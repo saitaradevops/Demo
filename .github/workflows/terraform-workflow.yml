@@ -52,3 +52,8 @@ jobs:
     - name: Terraform plan
       working-directory: ./terraform-github
       run: terraform plan
+
+    # Apply terraform plan
+    - name: Terraform apply
+      working-directory: ./terraform-github
+      run: terraform apply --auto-approve
