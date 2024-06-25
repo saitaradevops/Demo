@@ -1,0 +1,29 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Terraform Action to Perform'
+        type: choice
+        options:
+        - Terraform_apply
+        - Terraform_destroy
+
+jobs:
+  terraform:
+    name: Action
+    runs-on: amazon-linux
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+   
+    - name: checkout to terraform code folder
+      run: cd terraform-github
+    
+    - name: terraform-init
+      if: ${{github.event.input.action == "Terraform_apply"}}
+        run: terraform init
