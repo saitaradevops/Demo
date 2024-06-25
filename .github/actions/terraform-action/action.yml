@@ -25,5 +25,4 @@ jobs:
       run: cd terraform-github
     
     - name: terraform-init
-      if: ${{github.event.input.action == "Terraform_apply"}}
-        run: terraform init
+      run: terraform init
