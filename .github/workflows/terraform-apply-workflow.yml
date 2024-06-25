@@ -8,4 +8,9 @@ on:
         - Terraform_apply
         - Terraform_destroy
 jobs:
-  uses: action/terraform-apply.yml 
+  terraform:
+    name: Action
+    runs-on: amazon-linux
+    steps:
+    - name: apply
+      uses: action/terraform-apply.yml 
