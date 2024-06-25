@@ -8,10 +8,9 @@ on:
         - Terraform_apply
         - Terraform_destroy
 
-jobs:
+runs:
   terraform:
     name: Action
-    runs-on: amazon-linux
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
