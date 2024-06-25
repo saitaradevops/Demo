@@ -15,8 +15,9 @@ jobs:
     steps:
     - name: My first step - check out repository
       uses: actions/checkout@v4
-    - name: apply
+    - name: setup action
       uses: ./.github/actions/terraform-action
+    - name: init
       if: ${{github.event.input.action == "Terraform_apply"}}
       run: terraform init
       
