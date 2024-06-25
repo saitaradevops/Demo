@@ -13,4 +13,5 @@ jobs:
     runs-on: amazon-linux
     steps:
     - name: apply
-      uses: saitaradevops/Demo/action/terraform-apply
+      uses: saitaradevops/Demo/.github/actions/terraform-apply.yml
+      
