@@ -18,5 +18,5 @@ jobs:
     - name: apply
       uses: ./.github/actions/terraform-action
       if: ${{github.event.input.action == "Terraform_apply"}}
-        run: terraform init
+      run: terraform init
       
