@@ -1,3 +1,4 @@
+name: choice
 on: 
    workflow_dispatch:
     inputs:
@@ -12,6 +13,8 @@ jobs:
     name: Action
     runs-on: amazon-linux
     steps:
+    - name: My first step - check out repository
+      uses: actions/checkout@v4
     - name: apply
       uses: ./.github/actions/terraform-apply
       
