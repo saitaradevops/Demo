@@ -17,4 +17,6 @@ jobs:
       uses: actions/checkout@v4
     - name: apply
       uses: ./.github/actions/terraform-action
+      if: ${{github.event.input.action == "Terraform_apply"}}
+        run: terraform init
       
