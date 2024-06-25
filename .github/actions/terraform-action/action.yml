@@ -9,8 +9,8 @@ on:
         - Terraform_destroy
 
 runs:
-  terraform:
-    name: Action
+  
+    using: "composite"
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
