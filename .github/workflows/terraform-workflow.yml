@@ -29,6 +29,10 @@ jobs:
         shell: bash
         working-directory: ./terraform-github
 
+    env:  
+       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
+       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
+
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
@@ -47,9 +51,6 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
-      env:  
-       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
-       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format.
