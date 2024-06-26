@@ -34,14 +34,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    # Install the latest version of Terraform CLI 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    # Initialize a new or existing Terraform working directory 
     - name: Terraform Init
       id: init
       run: terraform init
+
+    # Validates terraform configuration files
+    - name: Terraform Validation
+      id: validate
+      run: terraform validate
 
     # Checks that all Terraform configuration files adhere to a canonical format.
     - name: Terraform plan
@@ -57,9 +62,9 @@ jobs:
       with:
          script: |
            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-           #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-           #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-           #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+           #### Terraform Initialization: \`${{ steps.init.outcome }}\`
+           #### Terraform Validation: \`${{ steps.validate.outcome }}\`
+           #### Terraform Plan: \`${{ steps.plan.outcome }}\`
  
            <details><summary>Show Plan</summary>
  
@@ -77,11 +82,12 @@ jobs:
              body: output
            })
 
-    # Apply terraform plan
+    
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1
  
+    # Apply terraform plan
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
