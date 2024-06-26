@@ -22,7 +22,6 @@ resource "aws_instance" "test-server" {
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
   security_groups = ["${aws_security_group.test-sg.id}"]
-  associate_public_ip_address = "true"
   tags = {
     Name = var.tag
   }
