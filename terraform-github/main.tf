@@ -21,7 +21,7 @@ resource "aws_instance" "test-server" {
   ami           = data.aws_ami.amazon-linux.id
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
-  security_groups = ["${aws_security_group.test-sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.test-sg.id}"]
   tags = {
     Name = var.tag
   }
