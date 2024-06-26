@@ -11,19 +11,17 @@ on:
     paths:
     - terraform-github/**
 
-#permissions:
-  #contents: read
-
   workflow_dispatch:
 
 jobs:
   terraform:
     name: 'EC2 creation'
     runs-on: amazon-linux
+    environment: develop
+    permissions: write-all
     env:  
        TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
        TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
-    #environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -39,15 +37,11 @@ jobs:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-   
-    - name: checkout to terraform code folder
-      run: cd terraform-github
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
-      run: terraform init
-      
+      run: terraform init -backend-config="access_key=$TF_VAR_access_key" -backend-config="secret_key=$TF_VAR_secret_key"
 
     # Checks that all Terraform configuration files adhere to a canonical format.
     - name: Terraform plan
