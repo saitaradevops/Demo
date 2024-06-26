@@ -20,9 +20,7 @@ jobs:
   terraform:
     name: 'EC2 creation'
     runs-on: amazon-linux
-    env:  
-       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
-       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
+    
     #environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -49,6 +47,9 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
+      env:  
+       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
+       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format.
