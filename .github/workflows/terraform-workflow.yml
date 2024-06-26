@@ -11,9 +11,6 @@ on:
     paths:
     - terraform-github/**
 
-#permissions:
-  #contents: read
-
   workflow_dispatch:
 
 jobs:
@@ -21,16 +18,16 @@ jobs:
     name: 'EC2 creation'
     runs-on: amazon-linux
     environment: develop
+    permissions: write-all
+    env:  
+       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
+       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
         working-directory: ./terraform-github
-
-    env:  
-       TF_VAR_access_key: ${{ secrets.ACCESS_KEY }}
-       TF_VAR_secret_key: ${{ secrets.SECRET_KEY }}
 
     steps:
     # Checkout the repository to the GitHub Actions runner
