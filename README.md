@@ -1,1 +1,1 @@
-This is a Readme file for Github actions integration with terraform to deploy/manage the AWS resources
+This is a Readme file for Github actions integration with terraform to deploy/manage the AWS resources.
