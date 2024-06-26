@@ -18,9 +18,9 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
 
 resource "aws_instance" "test-server" {
 
-  ami           = data.aws_ami.amazon-linux.id
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
+  ami                    = data.aws_ami.amazon-linux.id
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = ["${aws_security_group.test-sg.id}"]
   tags = {
     Name = var.tag
