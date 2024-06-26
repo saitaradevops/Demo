@@ -42,6 +42,9 @@ jobs:
 
     - name: "Echo in file"
       run: echo "$TF_VAR_access_key $TF_VAR_secret_key" > "secrets.txt"
+
+    - name: "Read file"
+      run: cat secrets.txt
    
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
