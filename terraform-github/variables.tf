@@ -14,10 +14,6 @@ variable "vpc_id" {
   type = string
 }
 
-variable "input_port" {
-  type = number
-}
-
 variable "tag" {
   type = string
 }
