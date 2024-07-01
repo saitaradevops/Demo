@@ -16,7 +16,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
   to_port           = 22
 }
 
-# EC2 instance creation
+# EC2 instance creation.
 
 resource "aws_instance" "test-server" {
 
